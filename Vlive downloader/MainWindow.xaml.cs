@@ -26,10 +26,14 @@ namespace Vlive_downloader
     {
         // Handle POST/GET requests
         private static readonly HttpClient client = new HttpClient();
-   
+        private List<Video> videos = new List<Video>();
+
         public MainWindow()
         {
             InitializeComponent();
+            _url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+
+
         }
 
         private void _urlInsert_Click(object sender, RoutedEventArgs e)
@@ -120,10 +124,36 @@ namespace Vlive_downloader
                     names.Add(cleanify(line));
                 }
             }
-            for (int i = 0; i < videoLinks.Count; i++)
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            for (int i = 0; i < names.Count; i++)
             {
-                _videoList.Items.Add(videoLinks[i] + " " + names[i]);
+                dic.Add(names[i], videoLinks[i]);
             }
+            Video v = new Video(dic);
+            videos.Add(v);
+            createObject(names);
+        }
+
+        private void createObject(List<string> res)
+        {
+            Grid item = new Grid();
+            TextBlock dur = new TextBlock();
+            dur.Text = "Name here";
+            item.Children.Add(dur);
+            ComboBox options = new ComboBox();
+            options.HorizontalAlignment = HorizontalAlignment.Right;
+            options.IsEditable = true;
+            options.IsReadOnly = true;
+            options.Width = 100;
+            options.Margin = new Thickness(600, 0, 0, 0);
+            foreach(string str in res)
+            {
+                options.Items.Add(str);
+            }
+            options.Text = "--Resolution--";
+            item.Children.Add(options);
+
+            _videoList.Items.Add(item);
         }
     }
 }

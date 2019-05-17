@@ -16,3 +16,21 @@ C:\Users\Brandon Duong\source\repos\Vlive downloader\Vlive downloader\obj\Debug\
 C:\Users\Brandon Duong\source\repos\Vlive downloader\Vlive downloader\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Brandon Duong\source\repos\Vlive downloader\Vlive downloader\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Brandon Duong\source\repos\Vlive downloader\Vlive downloader\obj\Debug\Vlive downloader.csproj.CopyComplete
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\bin\Debug\Vlive downloader.exe.config
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\bin\Debug\Vlive downloader.exe
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\bin\Debug\Vlive downloader.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.csprojAssemblyReference.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\MainWindow.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\App.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader_MarkupCompile.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader_MarkupCompile.lref
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\MainWindow.baml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.g.resources
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive_downloader.Properties.Resources.resources
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.csproj.GenerateResource.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.csproj.CoreCompileInputs.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.csproj.CopyComplete
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.exe
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.pdb
