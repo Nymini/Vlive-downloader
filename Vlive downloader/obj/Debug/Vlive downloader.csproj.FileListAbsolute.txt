@@ -34,3 +34,5 @@ C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\De
 C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.csproj.CopyComplete
 C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.exe
 C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\Vlive downloader.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\VideoList.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive downloader\obj\Debug\VideoList.baml

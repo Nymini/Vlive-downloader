@@ -146,33 +146,13 @@ namespace Vlive_downloader
 
         private void createObject(List<string> res, string img, string name)
         {
-            Grid item = new Grid();
-            TextBlock dur = new TextBlock();
-            Image thumb = new Image();
-            thumb.Source = new BitmapImage(new Uri(img));
-            thumb.Height = 123;
-            thumb.Margin = new Thickness(0, 0, 0, 0);
-            thumb.HorizontalAlignment = HorizontalAlignment.Left;
-            item.Children.Add(thumb);
-            dur.Text = name;
-            dur.Margin = new Thickness(250, 0, 0, 0);
-            item.Children.Add(dur);
-            ComboBox options = new ComboBox();
-            options.HorizontalAlignment = HorizontalAlignment.Right;
-            options.IsEditable = true;
-            options.IsReadOnly = true;
-            options.VerticalAlignment = VerticalAlignment.Center;
-            options.Width = 100;
-            options.Height = 20;
-            options.Margin = new Thickness(650, 0, 0, 0);
+            List<string> tmp = new List<string>();
             foreach(string str in res)
             {
-                options.Items.Add(str);
+                tmp.Add(str);
             }
-            options.Text = "--Resolution--";
-            item.Children.Add(options);
-
-            _videoList.Items.Add(item);
+            VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, tmp);
+            _videoList.Items.Add(v);
         }
 
         private string getImageURL(string r)
