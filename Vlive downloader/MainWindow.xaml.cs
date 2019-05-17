@@ -51,6 +51,8 @@ namespace Vlive_downloader
             int n_match = 0;
             string vid_id = null;
             string key = null;
+            string img = null;
+            string name = null;
             // Look through each line in html finding a regex match.
             // #TODO: There are better methods than iterating through html.
             foreach (var line in html.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
@@ -59,19 +61,27 @@ namespace Vlive_downloader
                 if (n_match == 2)
                 {
                     key = line;
-                    break;
+                    n_match++;
                 }
                 if (n_match == 1)
                 {
                     vid_id = line;
                     n_match++;
                 }
-                if (m.Success)
+                if (m.Success && n_match == 0)
                 {
                     n_match++;
                 }
+                Match n = Regex.Match(line, "_video_thumb");
+                if (n.Success)
+                {
+                    //We use regex for now.
+                    img = getImageURL(cleanify(line));
+                    name = getName(line);
+                
+                }
             }
-            handleRequest(cleanify(vid_id), cleanify(key));
+            handleRequest(cleanify(vid_id), cleanify(key), img, name);
         }
         
         // Removes unwanted characters from key and video id
@@ -87,7 +97,7 @@ namespace Vlive_downloader
             return res;
         }
 
-        private async void handleRequest(string vidId, string key)
+        private async void handleRequest(string vidId, string key, string img, string name)
         {
             string url = "http://global.apis.naver.com/rmcnmv/rmcnmv/vod_play_videoInfo.json";
             var param = new Dictionary<string, string>
@@ -112,7 +122,7 @@ namespace Vlive_downloader
             List<string> names = new List<string>();
             foreach (var line in tmp.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
             {
-                Console.Write(line + "\n\n");
+                
                 Match m = Regex.Match(line, @"source");
                 if (m.Success)
                 {
@@ -131,21 +141,29 @@ namespace Vlive_downloader
             }
             Video v = new Video(dic);
             videos.Add(v);
-            createObject(names);
+            createObject(names, img, name);
         }
 
-        private void createObject(List<string> res)
+        private void createObject(List<string> res, string img, string name)
         {
             Grid item = new Grid();
             TextBlock dur = new TextBlock();
-            dur.Text = "Name here";
+            Image thumb = new Image();
+            thumb.Source = new BitmapImage(new Uri(img));
+            thumb.Height = 123;
+            thumb.Margin = new Thickness(0, 0, 0, 0);
+            thumb.HorizontalAlignment = HorizontalAlignment.Left;
+            item.Children.Add(thumb);
+            dur.Text = name;
             item.Children.Add(dur);
             ComboBox options = new ComboBox();
             options.HorizontalAlignment = HorizontalAlignment.Right;
             options.IsEditable = true;
             options.IsReadOnly = true;
+            options.VerticalAlignment = VerticalAlignment.Top;
             options.Width = 100;
-            options.Margin = new Thickness(600, 0, 0, 0);
+            options.Height = 20;
+            options.Margin = new Thickness(650, 0, 0, 0);
             foreach(string str in res)
             {
                 options.Items.Add(str);
@@ -154,6 +172,21 @@ namespace Vlive_downloader
             item.Children.Add(options);
 
             _videoList.Items.Add(item);
+        }
+
+        private string getImageURL(string r)
+        {
+            string cleaned = Regex.Replace(r, "<imgsrc=", "");
+            cleaned = Regex.Replace(cleaned, @"class=.*", "");
+            return cleaned;
+        }
+
+        private string getName(string r)
+        {
+            string cleaned = Regex.Replace(r, @".*alt=", "");
+            cleaned = Regex.Replace(cleaned, @"style.*", "");
+
+            return cleaned;
         }
     }
 }
