@@ -155,12 +155,13 @@ namespace Vlive_downloader
             thumb.HorizontalAlignment = HorizontalAlignment.Left;
             item.Children.Add(thumb);
             dur.Text = name;
+            dur.Margin = new Thickness(250, 0, 0, 0);
             item.Children.Add(dur);
             ComboBox options = new ComboBox();
             options.HorizontalAlignment = HorizontalAlignment.Right;
             options.IsEditable = true;
             options.IsReadOnly = true;
-            options.VerticalAlignment = VerticalAlignment.Top;
+            options.VerticalAlignment = VerticalAlignment.Center;
             options.Width = 100;
             options.Height = 20;
             options.Margin = new Thickness(650, 0, 0, 0);
@@ -187,6 +188,28 @@ namespace Vlive_downloader
             cleaned = Regex.Replace(cleaned, @"style.*", "");
 
             return cleaned;
+        }
+
+        private async void _dl_Click(object sender, RoutedEventArgs e)
+        {
+            int i = 0;
+            foreach(Grid g in _videoList.Items)
+            {
+                ComboBox tmp = g.Children[2] as ComboBox;
+                if (tmp.Text == "--Resolution--")
+                {
+                    i++;
+                    continue;
+                }
+                Video v = videos[i];
+                string dlLink = v.getLink(tmp.Text);
+                System.Diagnostics.Debug.Write(dlLink + "\n");
+                i++;
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(dlLink, i.ToString() + ".mp4");
+                }
+            }
         }
     }
 }
