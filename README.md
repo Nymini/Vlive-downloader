@@ -1,11 +1,12 @@
 
 ## Summary
-A program that, given a bunch of VLIVE video URLs, downloads them in the requested video quality + subtitles.
+A Windows program that, given a bunch of VLIVE video URLs, downloads them in the requested video quality + subtitles.
 
 ## To Do List
 - Improved UI
 - Support to load videos from a .txt files
 - Preferences. E.g. Always download English subtitles if available
+- Custom filenames and filepaths
 
 ## Usage
 Simply paste in a valid vlive video URL, and choose a video resolution (subtitles optional), and click download.
