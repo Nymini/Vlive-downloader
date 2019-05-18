@@ -113,7 +113,7 @@ namespace Vlive_downloader
             var response = await client.PostAsync(url, content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.Write(responseString);
+            //System.Diagnostics.Debug.Write(responseString);
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
             var meta = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["meta"].ToString());
@@ -154,7 +154,7 @@ namespace Vlive_downloader
                 tmp.Add(str);
             }
             VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, tmp);
-            //v.Width = _videoList.Width;
+            v.Width = _main.Width;
             _videoList.Items.Add(v);
         }
 
@@ -194,7 +194,7 @@ namespace Vlive_downloader
             ComboBox tmp = g._res;
             Video v = videos[curr];
             string dlLink = v.getLink(tmp.Text);
-            System.Diagnostics.Debug.Write(dlLink + "\n");
+            //System.Diagnostics.Debug.Write(dlLink + "\n");
 
             using (WebClient client = new WebClient())
             {
@@ -213,6 +213,14 @@ namespace Vlive_downloader
         {
             curr++;
             downloadFile();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            foreach(VideoList g in _videoList.Items)
+            {
+                g.Width = _main.Width;
+            }
         }
     }
 }
