@@ -16,6 +16,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Vlive_downloader
 {
@@ -27,7 +28,7 @@ namespace Vlive_downloader
         // Handle POST/GET requests
         private static readonly HttpClient client = new HttpClient();
         private List<Video> videos = new List<Video>();
-
+        private int curr = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -152,6 +153,7 @@ namespace Vlive_downloader
                 tmp.Add(str);
             }
             VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, tmp);
+            //v.Width = _videoList.Width;
             _videoList.Items.Add(v);
         }
 
@@ -172,24 +174,52 @@ namespace Vlive_downloader
 
         private async void _dl_Click(object sender, RoutedEventArgs e)
         {
-            int i = 0;
-            foreach(Grid g in _videoList.Items)
+
+            foreach(VideoList g in _videoList.Items)
             {
-                ComboBox tmp = g.Children[2] as ComboBox;
-                if (tmp.Text == "--Resolution--")
+                ComboBox tmp = g._res;
+                if (tmp.Text == "--Resolutions--")
                 {
-                    i++;
-                    continue;
-                }
-                Video v = videos[i];
-                string dlLink = v.getLink(tmp.Text);
-                System.Diagnostics.Debug.Write(dlLink + "\n");
-                i++;
-                using (WebClient client = new WebClient())
-                {
-                    client.DownloadFile(dlLink, i.ToString() + ".mp4");
+                    //System.Diagnostics.Debug.Write("oh no\n");
+                    System.Windows.MessageBox.Show("One or more videos does not have a chosen resolution.");
+                    return;
                 }
             }
+            downloadFile();
+            
+        }
+        
+        private void downloadFile()
+        {
+
+            if (curr >= _videoList.Items.Count)
+            {
+                return;
+            }
+            VideoList g = _videoList.Items[curr] as VideoList;
+
+            ComboBox tmp = g._res;
+            Video v = videos[curr];
+            string dlLink = v.getLink(tmp.Text);
+            System.Diagnostics.Debug.Write(dlLink + "\n");
+
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFileCompleted += new AsyncCompletedEventHandler(downloadComplete);
+                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(updateProgress);
+                client.DownloadFileAsync(new Uri(dlLink), curr.ToString() + ".mp4");
+            }
+        }
+
+        private void updateProgress(object sender, DownloadProgressChangedEventArgs e)
+        {
+            (_videoList.Items[curr] as VideoList)._progress.Value = e.ProgressPercentage;
+        }
+
+        private void downloadComplete(object sender, AsyncCompletedEventArgs e)
+        {
+            curr++;
+            downloadFile();
         }
     }
 }
