@@ -7,10 +7,11 @@ namespace Vlive_downloader
     {
 
         private Dictionary<string, string> resolutions;
-
-        public Video(Dictionary<string, string> res)
+        private string name;
+        public Video(Dictionary<string, string> res, string name)
         {
             this.resolutions = res;
+            this.name = name;
         }
 
         public bool resExists(string res)
@@ -36,6 +37,11 @@ namespace Vlive_downloader
             {
                 return null;
             }
+        }
+
+        public string getName()
+        {
+            return name;
         }
     }
 }

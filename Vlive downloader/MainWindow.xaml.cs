@@ -78,11 +78,10 @@ namespace Vlive_downloader
                 {
                     //We use regex for now.
                     img = getImageURL(cleanify(line));
-                    name = getName(line);
                 
                 }
             }
-            handleRequest(cleanify(vid_id), cleanify(key), img, name);
+            handleRequest(cleanify(vid_id), cleanify(key), img);
         }
         
         // Removes unwanted characters from key and video id
@@ -98,7 +97,7 @@ namespace Vlive_downloader
             return res;
         }
 
-        private async void handleRequest(string vidId, string key, string img, string name)
+        private async void handleRequest(string vidId, string key, string img)
         {
             string url = "http://global.apis.naver.com/rmcnmv/rmcnmv/vod_play_videoInfo.json";
             var param = new Dictionary<string, string>
@@ -114,9 +113,11 @@ namespace Vlive_downloader
             var response = await client.PostAsync(url, content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            
+            System.Diagnostics.Debug.Write(responseString);
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
+            var meta = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["meta"].ToString());
+            string name = meta["subject"].ToString();
             var tmp = list["list"].ToString();
 
             List<string> videoLinks = new List<string>();
@@ -140,7 +141,7 @@ namespace Vlive_downloader
             {
                 dic.Add(names[i], videoLinks[i]);
             }
-            Video v = new Video(dic);
+            Video v = new Video(dic, name);
             videos.Add(v);
             createObject(names, img, name);
         }
@@ -161,14 +162,6 @@ namespace Vlive_downloader
         {
             string cleaned = Regex.Replace(r, "<imgsrc=", "");
             cleaned = Regex.Replace(cleaned, @"class=.*", "");
-            return cleaned;
-        }
-
-        private string getName(string r)
-        {
-            string cleaned = Regex.Replace(r, @".*alt=", "");
-            cleaned = Regex.Replace(cleaned, @"style.*", "");
-
             return cleaned;
         }
 
@@ -207,7 +200,7 @@ namespace Vlive_downloader
             {
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(downloadComplete);
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(updateProgress);
-                client.DownloadFileAsync(new Uri(dlLink), curr.ToString() + ".mp4");
+                client.DownloadFileAsync(new Uri(dlLink), v.getName() + "[" + tmp.Text + "]" + ".mp4");
             }
         }
 
