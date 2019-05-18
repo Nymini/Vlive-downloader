@@ -28,6 +28,7 @@ namespace Vlive_downloader
         // Handle POST/GET requests
         private static readonly HttpClient client = new HttpClient();
         private List<Video> videos = new List<Video>();
+        private List<Subtitle> subs = new List<Subtitle>();
         private int curr = 0;
         public MainWindow()
         {
@@ -91,6 +92,7 @@ namespace Vlive_downloader
             res = Regex.Replace(res, "\"", "");
             res = Regex.Replace(res, "source:", "");
             res = Regex.Replace(res, "name:", "");
+            res = Regex.Replace(res, "label:", "");
             res = Regex.Replace(res, @"\s+", "");
             res = Regex.Replace(res, ",", "");
 
@@ -113,13 +115,16 @@ namespace Vlive_downloader
             var response = await client.PostAsync(url, content);
 
             var responseString = await response.Content.ReadAsStringAsync();
-            //System.Diagnostics.Debug.Write(responseString);
+            System.Diagnostics.Debug.Write(responseString);
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
             var meta = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["meta"].ToString());
+            var sub = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["captions"].ToString());
             string name = meta["subject"].ToString();
             var tmp = list["list"].ToString();
 
+            List<string> subLabels = new List<string>();
+            subLabels = retrieveSubs(sub["list"].ToString());
             List<string> videoLinks = new List<string>();
             List<string> names = new List<string>();
             foreach (var line in tmp.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
@@ -143,18 +148,14 @@ namespace Vlive_downloader
             }
             Video v = new Video(dic, name);
             videos.Add(v);
-            createObject(names, img, name);
+            createObject(names, img, name, subLabels);
         }
 
-        private void createObject(List<string> res, string img, string name)
+        private void createObject(List<string> res, string img, string name, List<string> labels)
         {
-            List<string> tmp = new List<string>();
-            foreach(string str in res)
-            {
-                tmp.Add(str);
-            }
-            VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, tmp);
-            v.Width = _main.Width;
+
+            VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, res, labels);
+            v.Width = _main.Width - 27;
             _videoList.Items.Add(v);
         }
 
@@ -191,16 +192,25 @@ namespace Vlive_downloader
             }
             VideoList g = _videoList.Items[curr] as VideoList;
 
-            ComboBox tmp = g._res;
+            ComboBox res = g._res;
+            ComboBox label = g._sub;
             Video v = videos[curr];
-            string dlLink = v.getLink(tmp.Text);
-            //System.Diagnostics.Debug.Write(dlLink + "\n");
-
+            string dlLink = v.getLink(res.Text);
+            if (label.Text != "--Subtitles--")
+            {
+                Subtitle s = subs[curr];
+                string subLink = s.getSub(label.Text);
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFileAsync(new Uri(subLink), v.getName() + "[" + res.Text + "]" + ".vtt");
+                }
+            }
+           
             using (WebClient client = new WebClient())
             {
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(downloadComplete);
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(updateProgress);
-                client.DownloadFileAsync(new Uri(dlLink), v.getName() + "[" + tmp.Text + "]" + ".mp4");
+                client.DownloadFileAsync(new Uri(dlLink), v.getName() + "[" + res.Text + "]" + ".mp4");
             }
         }
 
@@ -219,8 +229,38 @@ namespace Vlive_downloader
         {
             foreach(VideoList g in _videoList.Items)
             {
-                g.Width = _main.Width;
+                g.Width = _main.Width - 27;
             }
+        }
+
+        private List<string> retrieveSubs(string src)
+        {
+            
+            List<string> subLinks = new List<string>();
+            List<string> label = new List<string>();
+            foreach (var line in src.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
+            {
+
+                Match m = Regex.Match(line, @"source");
+                if (m.Success)
+                {
+                    subLinks.Add(cleanify(line));
+                }
+                Match n = Regex.Match(line, @"label");
+                if (n.Success)
+                {
+                    label.Add(cleanify(line));
+                }
+            }
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            for (int i = 0; i < label.Count; i++)
+            {
+                dic.Add(label[i], subLinks[i]);
+            }
+            Subtitle s = new Subtitle(dic);
+            subs.Add(s);
+
+            return label;
         }
     }
 }

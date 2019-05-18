@@ -20,7 +20,7 @@ namespace Vlive_downloader
     /// </summary>
     public partial class VideoList : UserControl
     {
-        public VideoList(BitmapImage img, string title, List<string> combos)
+        public VideoList(BitmapImage img, string title, List<string> combos, List<string> subs)
         {
             InitializeComponent();
             _img.Source = img;
@@ -28,6 +28,10 @@ namespace Vlive_downloader
             foreach(string s in combos)
             {
                 _res.Items.Add(s);
+            }
+            foreach(string s in subs)
+            {
+                _sub.Items.Add(s);
             }
         }
     }

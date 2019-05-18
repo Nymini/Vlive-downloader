@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Subtitle.cs" />
     <Compile Include="Video.cs" />
     <Compile Include="VideoList.xaml.cs">
       <DependentUpon>VideoList.xaml</DependentUpon>
