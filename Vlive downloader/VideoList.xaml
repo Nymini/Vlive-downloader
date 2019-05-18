@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Vlive_downloader"
-             mc:Ignorable="d" Height="126.363" Width="770">
+             mc:Ignorable="d" Height="126.363" Width="770" Background="#FF393E46">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="19*"/>
@@ -15,9 +15,9 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Image x:Name="_img" HorizontalAlignment="Left" Height="126" VerticalAlignment="Top" Width="247" Grid.RowSpan="2"/>
-        <TextBlock x:Name="_title" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,60,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="39"  Background="#B2FFFFFF"/>
-        <ComboBox x:Name="_res" IsReadOnly="True" IsEditable="True" Text="--Resolutions--" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,60,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" BorderBrush="White"/>
-        <ComboBox x:Name="_sub" IsReadOnly="True" IsEditable="True" Text="--Subtitles--" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,21,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" BorderBrush="White"/>
-        <ProgressBar x:Name="_progress" HorizontalAlignment="Stretch" Height="27" Margin="247,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="_title" Grid.Column="0" HorizontalAlignment="Stretch" Padding="10" Margin="0,60,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="40"  Background="#FF313848" Foreground="White" FontWeight="Bold" FontSize="14" FontFamily="Roboto Black"/>
+        <ComboBox x:Name="_res" IsReadOnly="True" IsEditable="True" Text="--Resolutions--" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,60,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" BorderBrush="White" FontFamily="Roboto Black" FontSize="14"/>
+        <ComboBox x:Name="_sub" IsReadOnly="True" IsEditable="True" Text="--Subtitles--" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,21,0,0" Grid.Row="1" VerticalAlignment="Top" Height="39" BorderBrush="White" FontFamily="Roboto Black" FontSize="14" FontWeight="Bold"/>
+        <ProgressBar x:Name="_progress" HorizontalAlignment="Stretch" Height="27" Margin="247,0,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="#FF535353" Foreground="#FF4ECCA3"/>
     </Grid>
 </UserControl>

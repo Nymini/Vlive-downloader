@@ -9,7 +9,7 @@
         MinHeight="300"
         MinWidth="600"
         SizeChanged="Window_SizeChanged"
-        Title="MainWindow" Height="645.262" Width="1011.81">
+        Title="Vlive Video Downloader" Height="645.262" Width="1011.81" Background="#FF232931">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="119*"/>
@@ -17,14 +17,15 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="331*" />
+                <ColumnDefinition Width="472*"/>
+                <ColumnDefinition Width="201*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="_url" Grid.Column="0" HorizontalAlignment="Stretch" Height="28" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <Button x:Name="_urlInsert" Grid.Column="1" Content="Insert URL" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="28" Click="_urlInsert_Click"/>
+            <TextBox x:Name="_url" Grid.Column="0" HorizontalAlignment="Stretch" Height="28" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF393E46" Foreground="Black"/>
+            <Button x:Name="_urlInsert" Grid.Column="2" Content="Insert URL" Margin="0,10,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="28" Click="_urlInsert_Click" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black"/>
         </Grid>
-        <ListView x:Name="_videoList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,44,0,35"   Background="#FFA49E9E" Grid.ColumnSpan="2"/>
-        <Button x:Name="_dl" Content="Download" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="28" Click="_dl_Click" Grid.ColumnSpan="2"/>
+        <ListView x:Name="_videoList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,44,0,35"   Background="#FF222831" Grid.ColumnSpan="2" BorderBrush="#FF222831"/>
+        <Button x:Name="_dl" Content="Download" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="28" Click="_dl_Click" Grid.ColumnSpan="2" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" Foreground="Black" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black"/>
 
     </Grid>
 </Window>

@@ -33,7 +33,7 @@ namespace Vlive_downloader
         public MainWindow()
         {
             InitializeComponent();
-            _url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            //_url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
 
 
         }
@@ -41,8 +41,19 @@ namespace Vlive_downloader
         private void _urlInsert_Click(object sender, RoutedEventArgs e)
         {
             string url = _url.Text;
-
             string html;
+
+            if (url == null)
+            {
+                _url.Clear();
+                return;
+            }
+            Match v = Regex.Match(url, @"vlive.tv/video/");
+            if (!v.Success)
+            {
+                _url.Clear();
+                return;
+            }
             using (WebClient client = new WebClient())
             {
                 //https://www.vlive.tv/video/127002?channelCode=F5F127
@@ -155,8 +166,9 @@ namespace Vlive_downloader
         {
 
             VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, res, labels);
-            v.Width = _main.Width - 27;
+            v.Width = _main.Width - 30;
             _videoList.Items.Add(v);
+            _url.Clear();
         }
 
         private string getImageURL(string r)
@@ -229,7 +241,7 @@ namespace Vlive_downloader
         {
             foreach(VideoList g in _videoList.Items)
             {
-                g.Width = _main.Width - 27;
+                g.Width = _main.Width - 30;
             }
         }
 
