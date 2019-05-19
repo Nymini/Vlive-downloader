@@ -33,7 +33,7 @@ namespace Vlive_downloader
         public MainWindow()
         {
             InitializeComponent();
-            //_url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            _url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
 
 
         }
@@ -206,6 +206,7 @@ namespace Vlive_downloader
 
             ComboBox res = g._res;
             ComboBox label = g._sub;
+            string name = g._title.Text;
             Video v = videos[curr];
             string dlLink = v.getLink(res.Text);
             if (label.Text != "--Subtitles--")
@@ -214,7 +215,7 @@ namespace Vlive_downloader
                 string subLink = s.getSub(label.Text);
                 using (WebClient client = new WebClient())
                 {
-                    client.DownloadFileAsync(new Uri(subLink), v.getName() + "[" + res.Text + "]" + ".vtt");
+                    client.DownloadFileAsync(new Uri(subLink), name + "[" + res.Text + "]" + ".vtt");
                 }
             }
            
@@ -222,7 +223,7 @@ namespace Vlive_downloader
             {
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(downloadComplete);
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(updateProgress);
-                client.DownloadFileAsync(new Uri(dlLink), v.getName() + "[" + res.Text + "]" + ".mp4");
+                client.DownloadFileAsync(new Uri(dlLink), name + "[" + res.Text + "]" + ".mp4");
             }
         }
 

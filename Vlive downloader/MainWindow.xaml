@@ -21,11 +21,15 @@
                 <ColumnDefinition Width="472*"/>
                 <ColumnDefinition Width="201*" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="_url" Grid.Column="0" HorizontalAlignment="Stretch" Height="28" Margin="5,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF393E46" Foreground="Black"/>
-            <Button x:Name="_urlInsert" Grid.Column="2" Content="Insert URL" Margin="0,10,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="28" Click="_urlInsert_Click" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black"/>
+            <TextBox x:Name="_url" Grid.Column="0" HorizontalAlignment="Stretch" Height="28" Margin="5,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF393E46" Foreground="Black"/>
+            <Button x:Name="_urlInsert" Grid.Column="2" Content="Insert URL" Margin="0,45,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="28" Click="_urlInsert_Click" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black"/>
+            
         </Grid>
-        <ListView x:Name="_videoList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,44,0,35"   Background="#FF222831" Grid.ColumnSpan="2" BorderBrush="#FF222831"/>
+        
+        <ListView x:Name="_videoList" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,82,0,35"   Background="#FF222831" Grid.ColumnSpan="2" BorderBrush="#FF222831"/>
         <Button x:Name="_dl" Content="Download" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="28" Click="_dl_Click" Grid.ColumnSpan="2" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" Foreground="Black" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black"/>
-
+        
+    
     </Grid>
+    
 </Window>
