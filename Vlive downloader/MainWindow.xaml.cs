@@ -34,6 +34,12 @@ namespace Vlive_downloader
         {
             InitializeComponent();
             _url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            _prefRes.Items.Add("1080P");
+            _prefRes.Items.Add("720P");
+            _prefRes.Items.Add("480P");
+            _prefRes.Items.Add("360P");
+            _prefRes.Items.Add("270P");
+            _prefRes.Items.Add("144P");
 
 
         }
@@ -167,6 +173,10 @@ namespace Vlive_downloader
 
             VideoList v = new VideoList(new BitmapImage(new Uri(img)), name, res, labels);
             v.Width = _main.Width - 30;
+            if (_prefRes.SelectedItem.ToString() != "")
+            {
+                v.setIndex(_prefRes.SelectedItem.ToString());
+            }
             _videoList.Items.Add(v);
             _url.Clear();
         }
@@ -231,6 +241,7 @@ namespace Vlive_downloader
         private void updateProgress(object sender, DownloadProgressChangedEventArgs e)
         {
             (_videoList.Items[curr] as VideoList)._progress.Value = e.ProgressPercentage;
+            (_videoList.Items[curr] as VideoList)._rec.Text = e.BytesReceived.ToString() + "/" + e.TotalBytesToReceive.ToString();
         }
 
         private void downloadComplete(object sender, AsyncCompletedEventArgs e)

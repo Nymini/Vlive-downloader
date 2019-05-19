@@ -33,6 +33,48 @@ namespace Vlive_downloader
             {
                 _sub.Items.Add(s);
             }
+
+        }
+
+        // Slightly hacky...
+        public void setIndex(string res)
+        {
+            string curr = res;
+            while (true)
+            {
+                for (int i = 0; i < _res.Items.Count; i++)
+                {
+                    if (curr == _res.Items[i].ToString())
+                    {
+                        _res.SelectedIndex = i;
+                        return;
+                    }
+                }
+                if (curr == "144P")
+                {
+                    return;
+                }
+                curr = Downgrade(curr);
+            }
+        }
+
+        // Yeah ew
+        private string Downgrade(string res)
+        {
+            if (res == "1080P")
+            {
+                return "720P";
+            } else if (res == "720P")
+            {
+                return "480P";
+            } else if (res == "480P")
+            {
+                return "360P";
+            } else if (res == "360P")
+            {
+                return "270P";
+            }
+            return "144P";
         }
     }
 }
