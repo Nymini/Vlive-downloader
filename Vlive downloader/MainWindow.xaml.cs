@@ -184,12 +184,13 @@ namespace Vlive_downloader
             foreach(VideoList g in _videoList.Items)
             {
                 ComboBox tmp = g._res;
-                if (tmp.Text == "--Resolutions--")
+                if (tmp.Text == "")
                 {
                     //System.Diagnostics.Debug.Write("oh no\n");
                     System.Windows.MessageBox.Show("One or more videos does not have a chosen resolution.");
                     return;
                 }
+                System.Diagnostics.Debug.Write(tmp.Text);
             }
             downloadFile();
             
@@ -209,7 +210,7 @@ namespace Vlive_downloader
             string name = g._title.Text;
             Video v = videos[curr];
             string dlLink = v.getLink(res.Text);
-            if (label.Text != "--Subtitles--")
+            if (label.Text != "")
             {
                 Subtitle s = subs[curr];
                 string subLink = s.getSub(label.Text);
