@@ -229,7 +229,7 @@ namespace Vlive_Downloader_Material
         private void downloadComplete(object sender, AsyncCompletedEventArgs e)
         {
             curr++;
-            //downloadFile();
+            downloadFile();
         }
 
         private List<string> retrieveSubs(string src)
