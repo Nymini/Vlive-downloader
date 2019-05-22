@@ -14,7 +14,8 @@
              Background="#FF323232"
              FontFamily="{DynamicResource MaterialDesignFont}"
              Height="auto">
-    <md:Card Background="White">
+    <md:Card md:ShadowAssist.ShadowDepth="Depth5" Background="#FF252620">
+    
     <Grid Height="auto" HorizontalAlignment="Stretch">
         <StackPanel Orientation="Vertical">
             <DockPanel >
@@ -23,10 +24,13 @@
                        VerticalAlignment="Top"
                     Height="120">
                 </Image>
-                <DockPanel HorizontalAlignment="Stretch" Height="auto" Margin="8 0 0 0">
-                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold">Filename</TextBlock>
-                    <TextBox DockPanel.Dock="Top" md:HintAssist.Hint="File Name" x:Name="_title" HorizontalAlignment="Stretch" VerticalAlignment="Top">"wowodwdjdoa sdoasdjodasj"</TextBox>
-                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold">Resolutions</TextBlock>
+                    <DockPanel HorizontalAlignment="Stretch" Height="auto" Margin="8 0 0 0">
+                        <DockPanel DockPanel.Dock="Top">
+                            <TextBlock DockPanel.Dock="Left" Margin="0 7 60 0" FontWeight="Bold" Foreground="#DDFFFFFF">Filename</TextBlock>
+                            <Button x:Name="_remove" Click="Remove" DockPanel.Dock="Right" Padding="3 0 3 0" Height="20" Margin="0 3 3 0" HorizontalAlignment="Right" FontSize="11">Remove</Button>
+                        </DockPanel>
+                    <TextBox md:TextFieldAssist.UnderlineBrush="Transparent" DockPanel.Dock="Top" md:HintAssist.Hint="File Name" x:Name="_title" HorizontalAlignment="Stretch" VerticalAlignment="Top" Foreground="#DDFFFFFF" FontSize="16" CaretBrush="Red">"wowodwdjdoa sdoasdjodasj"</TextBox>
+                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold" Foreground="#DDFFFFFF">Resolutions</TextBlock>
                         <WrapPanel x:Name="_res" DockPanel.Dock="Top">
 
                         </WrapPanel>
@@ -34,7 +38,7 @@
                     
                 </DockPanel>
             </DockPanel>
-                <TextBlock x:Name="_subLabel" Visibility="Visible" DockPanel.Dock="Top" Margin="5 4 0 0" FontWeight="Bold">Subtitles</TextBlock>
+                <TextBlock x:Name="_subLabel" Visibility="Visible" DockPanel.Dock="Top" Margin="5 4 0 0" FontWeight="Bold" Foreground="#DDFFFFFF">Subtitles</TextBlock>
                 <WrapPanel x:Name="_sub" DockPanel.Dock="Top" Visibility="Visible">
                 </WrapPanel>
             <ProgressBar x:Name="_progress" Value="0" Height="15" Margin="0 10 0 0" />

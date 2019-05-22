@@ -20,12 +20,24 @@
         MinWidth="640"
         MinHeight="400">
 
-    <Grid>
-        <ListBox ScrollViewer.CanContentScroll="False" HorizontalContentAlignment="Stretch" x:Name="_videoList" Margin="0 20 0 0" Width="auto">
+    <Grid Background="#FF272822">
+        <TextBlock Height="41" TextAlignment="Center" Padding="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFAE81FF" Foreground="#DDFFFFFF" FontSize="22" FontWeight="Bold" FontFamily="Roboto Light" >Vlive Downloader</TextBlock>
+        <ListBox ScrollViewer.CanContentScroll="False" HorizontalContentAlignment="Stretch" x:Name="_videoList" Margin="0,41,0,0" Width="auto" Foreground="#00000000">
             <!-- Not me code -->
             <!-- https://stackoverflow.com/questions/1398559/there-is-no-listbox-selectionmode-none-is-there-another-way-to-disable-select-->
+            <!-- https://social.msdn.microsoft.com/Forums/vstudio/en-US/afb4d846-4660-4936-965f-5afe25e954c4/listboxitem-got-higlighted-on-hover?forum=wpf-->
             <ListBox.Resources>
                 <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
                     <Style.Resources>
                         <!-- SelectedItem with focus -->
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
@@ -35,53 +47,75 @@
                        Color="Transparent" />
                         <!-- SelectedItem text foreground -->
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
-                       Color="Black" />
+                       Color="Transparent" />
                     </Style.Resources>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter 
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    Content="{TemplateBinding Content}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}">
+                                    </ContentPresenter>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
             </ListBox.Resources>
+            
         </ListBox>
-        
-        <md:DialogHost>
+        <Grid x:Name="_hasContent" Visibility="Visible" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center">
+                <md:PackIcon HorizontalAlignment="Center" Kind="EmoticonSad" Height="102" Width="102" Background="#01000000" Foreground="#80646464" />
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="#80646464" Margin="0 15 0 0">No videos to download. Add some!</TextBlock>
+            </StackPanel>
+        </Grid>
+        <md:DialogHost md:ThemeAssist.Theme="Dark">
             <md:DialogHost.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
             </md:DialogHost.Resources>
             
             <md:DialogHost.DialogContent>
+                <Grid Background="White">
                 <StackPanel Margin="16">
-                    <TextBlock>Add your VLIVE URL.</TextBlock>
-                    <TextBox x:Name="_url" Margin="0 10 0 0" HorizontalAlignment="Stretch"></TextBox>
+                    <TextBlock Foreground="Black">Add your VLIVE URL.</TextBlock>
+                        <TextBox md:TextFieldAssist.UnderlineBrush="#FFAE81FF" x:Name="_url" Margin="0 10 0 0" HorizontalAlignment="Stretch"></TextBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
                             IsDefault="True"
                             Margin="0 8 8 0"
                             Command="md:DialogHost.CloseDialogCommand"
                             Click="Add_Url"
-                            Content="ADD">
+                            Content="ADD" Foreground="#FFAE81FF">
                         </Button>
                         <Button Style="{StaticResource MaterialDesignFlatButton}"
                             IsCancel="True"
                             Margin="0 8 8 0"
                             Command="md:DialogHost.CloseDialogCommand"
-                            Content="CANCEL">
+                            Content="CANCEL" Foreground="#FFAE81FF">
                         </Button>
                     </StackPanel>
                 </StackPanel>
+                </Grid>
             </md:DialogHost.DialogContent>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                 Command="{x:Static md:DialogHost.OpenDialogCommand}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                Grid.Row="0" Margin="0 0 25 25" Height="50" Width="50" Background="#FF00EA95" BorderBrush="#FF00FFA2">
-                <md:PackIcon Kind="Plus" Height="22" Width="22"/>
+                Grid.Row="0" Margin="0 0 25 25" Height="50" Width="50" Background="#FFAE81FF" BorderBrush="#FFAE81FF" Foreground="#DDFFFFFF">
+                <md:PackIcon Kind="Plus" Height="32" Width="32"/>
             </Button>
             
         </md:DialogHost>
         <Button x:Name="_download" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                Grid.Row="0" Margin="0 0 35 85" Height="30" Width="30"
+                Grid.Row="0" Margin="0 0 30 85" Height="40" Width="40"
                 Visibility="Hidden"
-                Click="Download" Background="#FF00FF97" BorderBrush="#FF00EAA0">
-                <md:PackIcon Kind="DownloadMultiple" Height="15" Width="15"/>
+                Click="Download" Background="#FFE2D454" BorderBrush="#FFEADA47" Foreground="#DDFFFFFF">
+                <md:PackIcon Kind="DownloadMultiple" Height="22" Width="22"/>
         </Button>
 
 

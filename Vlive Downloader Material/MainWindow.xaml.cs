@@ -31,6 +31,7 @@ namespace Vlive_Downloader_Material
         private List<Subtitle> subs = new List<Subtitle>();
         private List<string> seenSubs = new List<string>();
         private int curr = 0;
+        private int col = 0;
         private List<string> colours = new List<string>();
 
         public MainWindow()
@@ -44,9 +45,10 @@ namespace Vlive_Downloader_Material
 
         }
 
-        private void Add_Url(object sender, RoutedEventArgs e)
+        private async void Add_Url(object sender, RoutedEventArgs e)
         {
             string url = _url.Text;
+            //url = "https://www.vlive.tv/video/127002?channelCode=F5F127";
             string html;
 
             if (url == null)
@@ -99,6 +101,7 @@ namespace Vlive_Downloader_Material
 
                 }
             }
+            _hasContent.Visibility = Visibility.Hidden;
             handleRequest(cleanify(vid_id), cleanify(key), img);
             _download.Visibility = Visibility.Visible;
 
@@ -164,11 +167,11 @@ namespace Vlive_Downloader_Material
             return cleaned;
         }
 
-        private void createObject(List<string> res, string img, string name, List<string> labels)
+        private async void createObject(List<string> res, string img, string name, List<string> labels)
         {
 
             VideoItem v = new VideoItem(new BitmapImage(new Uri(img)), name, res, labels, Colourize());
-
+            v.Margin = new Thickness(5, 10, 5, 0);
             _videoList.Items.Add(v);
             _url.Clear();
         }
@@ -294,15 +297,25 @@ namespace Vlive_Downloader_Material
         {
             if (colours.Count == 0)
             {
-                colours.Add("C93756");
-                colours.Add("BE90D4");
-                colours.Add("19B5FE");
-                colours.Add("26C281");
-                colours.Add("F4D03F");
-            }
-            Random rnd = new Random();
+                colours.Add("F92672");
+                colours.Add("66D9EF");
+                colours.Add("A6E22E");
+                colours.Add("FD971F");
 
-            return colours[rnd.Next(colours.Count)];
+            }
+
+            string colour = colours[col];
+            col++;
+            if (col >= colours.Count)
+            {
+                col = 0;
+            }
+            return colour;
+        }
+
+        public void Remover()
+        {
+
         }
     }
 }
