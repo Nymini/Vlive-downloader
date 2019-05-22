@@ -29,18 +29,20 @@ namespace Vlive_downloader
         private static readonly HttpClient client = new HttpClient();
         private List<Video> videos = new List<Video>();
         private List<Subtitle> subs = new List<Subtitle>();
+        private List<string> seenSubs = new List<string>();
         private int curr = 0;
         public MainWindow()
         {
             InitializeComponent();
-            _url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            //_url.Text = "https://www.vlive.tv/video/127002?channelCode=F5F127";
             _prefRes.Items.Add("1080P");
             _prefRes.Items.Add("720P");
             _prefRes.Items.Add("480P");
             _prefRes.Items.Add("360P");
             _prefRes.Items.Add("270P");
             _prefRes.Items.Add("144P");
-
+            // Support english only for now.
+            _prefSub.Items.Add("English");
 
         }
 
@@ -177,6 +179,10 @@ namespace Vlive_downloader
             {
                 v.setIndex(_prefRes.SelectedItem.ToString());
             }
+            if (_prefSub.SelectedItem.ToString() != "")
+            {
+                v.chooseSub(_prefSub.SelectedItem.ToString());
+            }
             _videoList.Items.Add(v);
             _url.Clear();
         }
@@ -274,7 +280,21 @@ namespace Vlive_downloader
                 Match n = Regex.Match(line, @"label");
                 if (n.Success)
                 {
-                    label.Add(cleanify(line));
+                    string tmp = cleanify(line);
+                    label.Add(tmp);
+                    bool seen = false;
+                    for (int i = 0; i < seenSubs.Count; i++)
+                    {
+                        if (seenSubs[i] == tmp)
+                        {
+                            seen = true;
+                        }
+                    }
+                    if (!seen)
+                    {
+                        seenSubs.Add(tmp);
+                        System.Diagnostics.Debug.Write(tmp + "\n");
+                    }
                 }
             }
             Dictionary<string, string> dic = new Dictionary<string, string>();

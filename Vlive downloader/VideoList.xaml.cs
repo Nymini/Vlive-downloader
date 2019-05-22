@@ -36,6 +36,18 @@ namespace Vlive_downloader
 
         }
 
+        public void chooseSub(string sub)
+        {
+            for (int i = 0; i < _sub.Items.Count; i++)
+            {
+                if (sub == _sub.Items[i].ToString())
+                {
+                    _sub.SelectedIndex = i;
+                    return;
+                }
+            }
+        }
+
         // Slightly hacky...
         public void setIndex(string res)
         {

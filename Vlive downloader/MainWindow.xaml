@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         x:Name="_main"
         MinHeight="300"
-        MinWidth="600"
+        MinWidth="800"
         SizeChanged="Window_SizeChanged"
         Title="Vlive Video Downloader" Height="645.262" Width="1011.81" Background="#FF232931">
     <Grid>
@@ -23,9 +23,9 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="_url" Grid.Column="0" HorizontalAlignment="Stretch" Height="28" Margin="5,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF393E46" Foreground="Black"/>
             <Button x:Name="_urlInsert" Grid.Column="2" Content="Insert URL" Margin="0,45,5,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="28" Click="_urlInsert_Click" Background="#FF4ECCA3" BorderBrush="#FF4ECCA3" FontSize="18" FontWeight="Bold" FontFamily="Roboto Black" Foreground="White"/>
-            <ComboBox x:Name="_prefSub" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" Width="101" Height="21"/>
-            <Button Content="Load file" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Height="21" Width="101"/>
-            <ComboBox x:Name="_prefRes" HorizontalAlignment="Left" Margin="111,10,0,0" VerticalAlignment="Top" Width="101"/>
+            <ComboBox x:Name="_prefSub" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Width="101" Height="21"/>
+            <ComboBox x:Name="_prefRes" HorizontalAlignment="Left" Margin="195,10,0,0" VerticalAlignment="Top" Width="101"/>
+            <TextBlock Padding="2" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Height="21" Text="Defaults:" VerticalAlignment="Top" Background="White" Width="55"/>
 
         </Grid>
 
