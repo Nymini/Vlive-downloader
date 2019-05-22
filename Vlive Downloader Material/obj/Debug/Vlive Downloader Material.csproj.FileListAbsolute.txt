@@ -1,0 +1,77 @@
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe.config
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.pdb
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\MaterialDesignColors.dll
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csprojAssemblyReference.cache
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\MainWindow.g.cs
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\App.g.cs
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.cache
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.lref
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\App.baml
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\MainWindow.baml
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.g.resources
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive_Downloader_Material.Properties.Resources.resources
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.GenerateResource.cache
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CoreCompileInputs.cache
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CopyComplete
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.pdb
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\VideoItem.g.cs
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Brandon Duong\source\repos\Vlive Downloader Material\Vlive Downloader Material\obj\Debug\VideoItem.baml
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe.config
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\MaterialDesignColors.dll
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csprojAssemblyReference.cache
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\MainWindow.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\VideoItem.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\App.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.cache
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.lref
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\App.baml
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\MainWindow.baml
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\VideoItem.baml
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.g.resources
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive_Downloader_Material.Properties.Resources.resources
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.GenerateResource.cache
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CoreCompileInputs.cache
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CopyComplete
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Brandon Duong\Documents\GitHub\Material\Vlive-Downloader-Material\Vlive Downloader Material\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe.config
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\Vlive Downloader Material.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\MaterialDesignColors.dll
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csprojAssemblyReference.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\MainWindow.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\VideoItem.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\App.g.cs
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material_MarkupCompile.lref
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\App.baml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\MainWindow.baml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\VideoItem.baml
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.g.resources
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive_Downloader_Material.Properties.Resources.resources
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.GenerateResource.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CoreCompileInputs.cache
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.csproj.CopyComplete
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.exe
+C:\Users\Brandon Duong\Documents\GitHub\Vlive-downloader\Vlive Downloader Material\obj\Debug\Vlive Downloader Material.pdb

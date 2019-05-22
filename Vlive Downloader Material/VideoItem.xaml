@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Vlive_Downloader_Material.VideoItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vlive_Downloader_Material"
+             mc:Ignorable="d" d:DesignWidth="800"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
+             Background="#FF323232"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Height="auto">
+    <md:Card Background="White">
+    <Grid Height="auto" HorizontalAlignment="Stretch">
+        <StackPanel Orientation="Vertical">
+            <DockPanel >
+                <Image x:Name="_img" Source="https://v-phinf.pstatic.net/20190502_276/1556794165617aasq1_PNG/upload_E1848AE185A5E186B7E18482E185A6E186AF.png?type=a720_play"
+                    HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                    Height="120">
+                </Image>
+                <DockPanel HorizontalAlignment="Stretch" Height="auto" Margin="8 0 0 0">
+                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold">Filename</TextBlock>
+                    <TextBox DockPanel.Dock="Top" md:HintAssist.Hint="File Name" x:Name="_title" HorizontalAlignment="Stretch" VerticalAlignment="Top">"wowodwdjdoa sdoasdjodasj"</TextBox>
+                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold">Resolutions</TextBlock>
+                        <WrapPanel x:Name="_res" DockPanel.Dock="Top">
+
+                        </WrapPanel>
+                        
+                    
+                </DockPanel>
+            </DockPanel>
+                <TextBlock x:Name="_subLabel" Visibility="Visible" DockPanel.Dock="Top" Margin="5 4 0 0" FontWeight="Bold">Subtitles</TextBlock>
+                <WrapPanel x:Name="_sub" DockPanel.Dock="Top" Visibility="Visible">
+                </WrapPanel>
+            <ProgressBar x:Name="_progress" Value="0" Height="15" Margin="0 10 0 0" />
+        </StackPanel>
+    </Grid>
+    </md:Card>
+</UserControl>
