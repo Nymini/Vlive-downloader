@@ -21,6 +21,7 @@ using MaterialDesignThemes.Wpf;
 using MaterialDesignColors;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.IO;
 
 namespace Vlive_Downloader_Material
 {
@@ -57,10 +58,10 @@ namespace Vlive_Downloader_Material
         private async void Add_Url(object sender, RoutedEventArgs e)
         {
             string url = _url.Text;
-            url = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            //url = "https://www.vlive.tv/video/127002?channelCode=F5F127";
             string html;
 
-            if (url == null)
+            if (url == null || url == "")
             {
                 _snackbar.MessageQueue.Enqueue("Empty URL", "OOF", () => Foo());
                 _url.Clear();
@@ -146,14 +147,25 @@ namespace Vlive_Downloader_Material
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
             var meta = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["meta"].ToString());
-            var sub = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["captions"].ToString());
+            Dictionary<string, object> sub;
+            try
+            {
+                sub = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["captions"].ToString());
+            } catch
+            {
+                sub = null;
+            }
             string name = meta["subject"].ToString();
             var tmp = list["list"].ToString();
 
             Dictionary<string, string> subLabels = new Dictionary<string, string>();
-            subLabels = retrieveSubs(sub["list"].ToString());
             List<string> videoLinks = new List<string>();
             List<string> names = new List<string>();
+
+            if (sub != null)
+            {
+                subLabels = retrieveSubs(sub["list"].ToString());
+            }
             foreach (var line in tmp.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
             {
 
@@ -200,6 +212,10 @@ namespace Vlive_Downloader_Material
             {
                 v.Set_Sub(_prefSub.SelectedItem.ToString());
             }
+            if (labels.Count == 0)
+            {
+                v._subLabel.Visibility = Visibility.Hidden;
+            }
             g.Children.Add(v);
             var bc = new BrushConverter();
 
@@ -242,6 +258,7 @@ namespace Vlive_Downloader_Material
         private void downloadFile()
         {
 
+            System.Diagnostics.Debug.Write(curr.ToString() + " " + _videoList.Items.Count.ToString());
             if (curr >= _videoList.Items.Count)
             {
                 _fin.IsActive = true;
@@ -265,15 +282,16 @@ namespace Vlive_Downloader_Material
             {
                 using (WebClient client = new WebClient())
                 {
-                    client.DownloadFileAsync(new Uri(locale), name + "[" + res + "]" + ".vtt");
+                    client.DownloadFileAsync(new Uri(locale), GetSafeFilename(name) + "[" + res + "]" + ".vtt");
                 }
             }
 
             using (WebClient client = new WebClient())
             {
+                System.Diagnostics.Debug.Write(dlLink + "\n" + name + "\n" + res);
                 client.DownloadFileCompleted += new AsyncCompletedEventHandler(downloadComplete);
                 client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(updateProgress);
-                client.DownloadFileAsync(new Uri(dlLink), name + "[" + res + "]" + ".mp4");
+                client.DownloadFileAsync(new Uri(dlLink), GetSafeFilename(name) + "[" + res + "]" + ".mp4");
             }
         }
 
@@ -418,6 +436,14 @@ namespace Vlive_Downloader_Material
             config.AppSettings.Settings["prefSub"].Value = _prefSub.SelectedItem.ToString();
             config.Save(ConfigurationSaveMode.Full);
             ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        //https://stackoverflow.com/questions/146134/how-to-remove-illegal-characters-from-path-and-filenames
+        public string GetSafeFilename(string filename)
+        {
+
+            return string.Join(" ", filename.Split(System.IO.Path.GetInvalidFileNameChars()));
+
         }
     }
 }
