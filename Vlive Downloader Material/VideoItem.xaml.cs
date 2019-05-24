@@ -24,7 +24,9 @@ namespace Vlive_Downloader_Material
     {
 
         private string colour = "FF0000";
-        public VideoItem(BitmapImage img, string title, List<string> combos, List<string> subs, string colour)
+        private Dictionary<string, string> video;
+        private Dictionary<string, string> subtitle;
+        public VideoItem(BitmapImage img, string title, string colour, Dictionary<string, string> combos, Dictionary<string, string> subs)
         {
             InitializeComponent();
             _img.Source = img;
@@ -34,14 +36,12 @@ namespace Vlive_Downloader_Material
             _progress.Foreground = (Brush)bc.ConvertFrom("#FF" + colour);
             _progress.Background = (Brush)bc.ConvertFrom("#9A" + colour);
             _progress.BorderBrush = (Brush)bc.ConvertFrom("#FF" + colour);
-            _remove.Background = (Brush)bc.ConvertFrom("#FF" + colour);
-            _remove.BorderBrush = (Brush)bc.ConvertFrom("#FF" + colour);
             _title.BorderBrush = (Brush)bc.ConvertFrom("#69" + colour);
             _title.SelectionBrush = (Brush)bc.ConvertFrom("#69" + colour);
             TextFieldAssist.SetUnderlineBrush(_title, (Brush)bc.ConvertFrom("#69" + colour));
             
             _title.CaretBrush = (Brush)bc.ConvertFrom("#FF" + colour);
-            foreach (string s in combos)
+            foreach (string s in combos.Keys)
             {
                 Button b = new Button();
                 b.Content = s;
@@ -51,7 +51,7 @@ namespace Vlive_Downloader_Material
                 b.Click += Choose;
                 _res.Children.Add(b);
             }
-            foreach (string s in subs)
+            foreach (string s in subs.Keys)
             {
                 Button b = new Button();
                 b.Content = s;
@@ -61,6 +61,9 @@ namespace Vlive_Downloader_Material
                 b.Click += Choose;
                 _sub.Children.Add(b);
             }
+
+            video = combos;
+            subtitle = subs;
 
         }
 
@@ -84,9 +87,24 @@ namespace Vlive_Downloader_Material
             (e.Source as Button).Background = (Brush)bc.ConvertFrom("#FF" + colour);
         }
 
-        private void Remove(object sender, RoutedEventArgs e)
+        public string DLLink()
         {
-            
+            string res = Get_Res();
+            if (res == null)
+            {
+                return null;
+            }
+            return video[res];
+        }
+
+        public string SubLink()
+        {
+            string sub = Get_Sub();
+            if (sub == null)
+            {
+                return null;
+            }
+            return subtitle[sub];
         }
 
         public string Get_Res()
@@ -113,6 +131,79 @@ namespace Vlive_Downloader_Material
             }
             // Should be impossible to reach here.
             return null;
+        }
+
+        public void Set_Res(string res)
+        {
+            var bc = new BrushConverter();
+            bool set = false;
+
+            if (res == "None")
+            {
+                return;
+            }
+            while (true)
+            {
+                foreach (Button b in _res.Children)
+                {
+                    System.Diagnostics.Debug.Write(b.Content.ToString() + " " + res + " \n");
+                    if (b.Content.ToString() == res)
+                    {
+                        
+                        b.Background = (Brush)bc.ConvertFrom("#FF" + colour);
+                        set = true;
+                    }
+                    else
+                    {
+                        b.Background = (Brush)bc.ConvertFrom("#69" + colour);
+                    }
+                }
+                if (set)
+                {
+                    return;
+                } else
+                {
+                    switch (res)
+                    {
+                        case "1080P":
+                            res = "720P";
+                            break;
+                        case "720P":
+                            res = "480P";
+                            break;
+                        case "480P":
+                            res = "360P";
+                            break;
+                        case "360P":
+                            res = "270P";
+                            break;
+                        case "270P":
+                            res = "144P";
+                            break;
+                        case "144P":
+                            return;
+                    }
+                }
+                //System.Diagnostics.Debug.Write(res.ToString() + " uh \n");
+            }
+        }
+
+        public void Set_Sub(string sub)
+        {
+            var bc = new BrushConverter();
+            foreach (Button b in _sub.Children)
+            {
+                if (b.Content.ToString() == sub)
+                {
+                    b.Background = (Brush)bc.ConvertFrom("#FF" + colour);
+
+                }
+                else
+                {
+                    b.Background = (Brush)bc.ConvertFrom("#69" + colour);
+                }
+            }
+            return;
         }
 
     }
