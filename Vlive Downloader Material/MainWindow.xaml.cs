@@ -293,15 +293,6 @@ namespace Vlive_Downloader_Material
 
         private void downloadFile()
         {
-            // Retrieve our VideoItem for the current file
-            Grid g = _videoList.Items[curr] as Grid;
-            VideoItem v = g.Children[0] as VideoItem;
-
-            string name = v._title.Text;
-            string dlLink = v.DLLink();
-            string locale = v.SubLink();
-            string res = v.Get_Res();
-
             // No more files to download
             if (curr >= _videoList.Items.Count)
             {
@@ -314,6 +305,15 @@ namespace Vlive_Downloader_Material
                 _add.Visibility = Visibility.Hidden;
                 return;
             }
+
+            // Retrieve our VideoItem for the current file
+            Grid g = _videoList.Items[curr] as Grid;
+            VideoItem v = g.Children[0] as VideoItem;
+
+            string name = v._title.Text;
+            string dlLink = v.DLLink();
+            string locale = v.SubLink();
+            string res = v.Get_Res();
 
             // No subtitle chosen, so no download
             if (locale != null)
