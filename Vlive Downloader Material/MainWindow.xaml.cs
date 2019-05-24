@@ -120,7 +120,7 @@ namespace Vlive_Downloader_Material
                 } 
                 if (n.Success)
                 {
-                    img = getImageURL(cleanify(line));
+                    img = getImageURL(cleanify(line, true));
                 }
                 if (o.Success)
                 {
@@ -129,7 +129,7 @@ namespace Vlive_Downloader_Material
             }
 
             // Create a POST request
-            handleRequest(cleanify(vid_id), cleanify(key), img, name);
+            handleRequest(cleanify(vid_id, true), cleanify(key, true), img, name);
 
             // Make controls visible/invisible now that we have a video
             _download.Visibility = Visibility.Visible;
@@ -158,7 +158,7 @@ namespace Vlive_Downloader_Material
             var response = await client.PostAsync(url, content);
             var responseString = await response.Content.ReadAsStringAsync();
 
-            //System.Diagnostics.Debug.Write(responseString);
+            System.Diagnostics.Debug.Write(responseString);
             // Hacky way to retrieve JSON content
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
@@ -195,11 +195,11 @@ namespace Vlive_Downloader_Material
                 Match n = Regex.Match(line, @"name");
                 if (m.Success)
                 {
-                    videoLinks.Add(cleanify(line));
+                    videoLinks.Add(cleanify(line, true));
                 }
                 if (n.Success)
                 {
-                    names.Add(cleanify(line));
+                    names.Add(cleanify(line, true));
                 }
             }
 
@@ -353,31 +353,37 @@ namespace Vlive_Downloader_Material
             // Look through all subtitles and add it to a dict
             List<string> subLinks = new List<string>();
             List<string> label = new List<string>();
+            string dup = null;
+            string tmp = null;
             foreach (var line in src.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries))
             {
 
                 Match m = Regex.Match(line, @"source");
                 if (m.Success)
                 {
-                    subLinks.Add(cleanify(line));
+                    dup = cleanify(line, true);
+                    subLinks.Add(dup);
+                    Match f = Regex.Match(dup, "fan.vtt");
+                    Match a = Regex.Match(dup, "auto.vtt");
+                    if (f.Success)
+                    {
+                        label.Add(tmp + " (fan)");
+                    }
+                    else if (a.Success)
+                    {
+                        label.Add(tmp + " (auto)");
+                    }
+                    else
+                    {
+                        label.Add(tmp);
+                    }
                 }
                 Match n = Regex.Match(line, @"label");
                 if (n.Success)
                 {
-                    string tmp = cleanify(line);
-                    label.Add(tmp);
-                    bool seen = false;
-                    for (int i = 0; i < seenSubs.Count; i++)
-                    {
-                        if (seenSubs[i] == tmp)
-                        {
-                            seen = true;
-                        }
-                    }
-                    if (!seen)
-                    {
-                        seenSubs.Add(tmp);
-                    }
+                     tmp = cleanify(line, false);
+     
+
                 }
             }
             Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -400,14 +406,18 @@ namespace Vlive_Downloader_Material
         }
 
         // Removes unwanted characters from key and video id
-        private string cleanify(string str)
+        private string cleanify(string str, bool space)
         {
             string res = str;
             res = Regex.Replace(res, "\"", "");
             res = Regex.Replace(res, "source:", "");
             res = Regex.Replace(res, "name:", "");
             res = Regex.Replace(res, "label:", "");
-            res = Regex.Replace(res, @"\s+", "");
+            if (space)
+            {
+                res = Regex.Replace(res, @"\s+", "");
+            }
+            res = Regex.Replace(res, @"^\s+", "");
             res = Regex.Replace(res, ",", "");
 
             return res;
