@@ -14,7 +14,7 @@
              Background="#FF323232"
              FontFamily="{DynamicResource MaterialDesignFont}"
              Height="auto">
-    <md:Card md:ShadowAssist.ShadowDepth="Depth5" Background="#FF44463F">
+    <md:Card x:Name="_card" md:ShadowAssist.ShadowDepth="Depth5" Background="#FF44463F">
     
     <Grid Height="auto" HorizontalAlignment="Stretch">
         <StackPanel Orientation="Vertical">
@@ -26,11 +26,11 @@
                 </Image>
                     <DockPanel HorizontalAlignment="Stretch" Height="auto" Margin="8 0 0 0">
                         <DockPanel DockPanel.Dock="Top">
-                            <TextBlock DockPanel.Dock="Left" Margin="0 7 60 0" FontWeight="Bold" Foreground="#DDFFFFFF">Filename</TextBlock>
+                            <TextBlock x:Name="_titleLabel" DockPanel.Dock="Left" Margin="0 7 60 0" FontWeight="Bold" Foreground="#DDFFFFFF">Filename</TextBlock>
                             
                         </DockPanel>
                     <TextBox md:TextFieldAssist.UnderlineBrush="Transparent" DockPanel.Dock="Top" md:HintAssist.Hint="File Name" x:Name="_title" HorizontalAlignment="Stretch" VerticalAlignment="Top" Foreground="#DDFFFFFF" FontSize="16" CaretBrush="Red">"wowodwdjdoa sdoasdjodasj"</TextBox>
-                    <TextBlock DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold" Foreground="#DDFFFFFF">Resolutions</TextBlock>
+                    <TextBlock x:Name="_resLabel" DockPanel.Dock="Top" Margin="0 7 0 0" FontWeight="Bold" Foreground="#DDFFFFFF">Resolutions</TextBlock>
                         <WrapPanel x:Name="_res" DockPanel.Dock="Top">
 
                         </WrapPanel>

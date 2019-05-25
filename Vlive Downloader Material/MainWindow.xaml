@@ -20,7 +20,7 @@
         MinWidth="800"
         MinHeight="600" Icon="Resources/logo.png">
 
-    <Grid Background="#FF272822">
+    <Grid x:Name="_window" Background="#FF272822">
         <TextBlock Height="41" TextAlignment="Center" Padding="7" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFAE81FF" Foreground="#DDFFFFFF" FontSize="22" FontWeight="Bold" FontFamily="Roboto Light" >
             Vlive Downloader
             
@@ -30,11 +30,18 @@
                 <TextBlock Margin="5 0 0 20" Foreground="#FFAE81FF" FontSize="18" FontFamily="Roboto Light">Options</TextBlock>
                 <StackPanel Margin="10 40 10 10">
                     <TextBlock>Preferred Resolution</TextBlock>
-                    <ComboBox x:Name="_prefRes" SelectionChanged="Set_Pref_Res">
+                    <ComboBox x:Name="_prefRes" SelectionChanged="Set_Pref_Res" md:TextFieldAssist.UnderlineBrush="#FFAE81FF">
                     </ComboBox>
                     <TextBlock  Margin="0 15 0 0">Preferred Subtitle</TextBlock>
-                    <ComboBox x:Name="_prefSub" SelectionChanged="Set_Pref_Sub">
+                    <ComboBox x:Name="_prefSub" SelectionChanged="Set_Pref_Sub" md:TextFieldAssist.UnderlineBrush="#FFAE81FF">
                     </ComboBox>
+                    <CheckBox
+                        x:Name="_dark"
+                        Margin="0 15 0 0" Background="#FFAE81FF" BorderBrush="#FFAE81FF"
+                        Checked="Dark_Check"
+                        Unchecked="Dark_Uncheck">
+                        Dark Mode
+                    </CheckBox>
                 </StackPanel>
             </Grid>
         </md:PopupBox>
@@ -90,7 +97,7 @@
                 <TextBlock FontSize="20" FontWeight="Bold" Foreground="#80646464" Margin="0 15 0 0">No videos to download. Add some!</TextBlock>
             </StackPanel>
         </Grid>
-        <md:DialogHost  FontFamily="Roboto Light" DialogTheme="Dark">
+        <md:DialogHost x:Name="_dialog" FontFamily="Roboto Light" DialogTheme="Dark">
             <md:DialogHost.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
             </md:DialogHost.Resources>
@@ -98,7 +105,7 @@
             <md:DialogHost.DialogContent>
                 <Grid Width="500">
                 <StackPanel Margin="16">
-                    <TextBlock Foreground="#FFCDCDCD" FontSize="24" TextAlignment="Center" Margin="0 0 0 20">Add your VLIVE URL</TextBlock>
+                    <TextBlock Foreground="#FFBDBDBD" FontSize="24" TextAlignment="Center" Margin="0 0 0 20">Add your VLIVE URL</TextBlock>
                         <TextBox md:TextFieldAssist.UnderlineBrush="#FFAE81FF" x:Name="_url" Margin="0 10 0 0" HorizontalAlignment="Stretch" FontSize="18"></TextBox>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                         <Button Style="{StaticResource MaterialDesignFlatButton}"

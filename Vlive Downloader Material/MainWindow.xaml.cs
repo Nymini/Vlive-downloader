@@ -57,13 +57,21 @@ namespace Vlive_Downloader_Material
             // Set preferred subtitle/resolution to what was chosen in the config file.
             _prefRes.SelectedItem = ConfigurationManager.AppSettings.Get("prefRes");
             _prefSub.SelectedItem = ConfigurationManager.AppSettings.Get("prefSub");
+
+            // Set background colour
+            Colour_Mode();
+
+            if (ConfigurationManager.AppSettings.Get("dark") == "dark")
+            {
+                _dark.IsChecked = true;
+            }
         }
 
         // Retrieves URL
         private async void Add_Url(object sender, RoutedEventArgs e)
         {
             string url = _url.Text;
-            //url = "https://www.vlive.tv/video/127002?channelCode=F5F127";
+            url = "https://www.vlive.tv/video/127002?channelCode=F5F127";
             string html;
             int n_match = 0;
             string vid_id = null;
@@ -161,6 +169,17 @@ namespace Vlive_Downloader_Material
             System.Diagnostics.Debug.Write(responseString);
             // Hacky way to retrieve JSON content
             var json = JsonConvert.DeserializeObject<Dictionary<String, object>>(responseString);
+            if (json.Keys.Contains("errorCode"))
+            {
+                _snackbar.MessageQueue.Enqueue("Unable to retrieve video details", "OOF", () => Foo());
+                if (_videoList.Items.Count == 0)
+                {
+                    // Make controls visible/invisible now that we have a video
+                    _download.Visibility = Visibility.Hidden;
+                    _hasContent.Visibility = Visibility.Visible;
+                }
+                return;
+            }
             var list = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["videos"].ToString());
             var meta = JsonConvert.DeserializeObject<Dictionary<String, object>>(json["meta"].ToString());
             string name = meta["subject"].ToString();
@@ -244,8 +263,16 @@ namespace Vlive_Downloader_Material
             {
                 v._subLabel.Visibility = Visibility.Hidden;
             }
-            
-          
+
+            // Set colour depending on dark/light mode
+            if (ConfigurationManager.AppSettings.Get("dark") == "dark")
+            {
+                Set_Colour(v, "dark");
+            } else
+            {
+                Set_Colour(v, "light");
+            }
+
             // Create a remove button to add to grid
             Button b = new Button();
             b.Content = "Remove";
@@ -498,6 +525,7 @@ namespace Vlive_Downloader_Material
             ConfigurationManager.RefreshSection("appSettings");
         }
 
+
         //https://stackoverflow.com/questions/146134/how-to-remove-illegal-characters-from-path-and-filenames
         public string GetSafeFilename(string filename)
         {
@@ -514,6 +542,68 @@ namespace Vlive_Downloader_Material
             System.Diagnostics.Debug.Write(line);
     
             return line;
+        }
+
+        private async void Colour_Mode()
+        {
+            var bc = new BrushConverter();
+            if (ConfigurationManager.AppSettings.Get("dark") == "dark")
+            {   
+                _window.Background = (Brush)bc.ConvertFrom("#FF272822");
+                _dialog.DialogTheme = BaseTheme.Dark;
+                foreach (Grid g in _videoList.Items)
+                {
+                    Set_Colour(g.Children[0] as VideoItem, "dark");
+                }
+            } else
+            {
+                _window.Background = (Brush)bc.ConvertFrom("#FFFFFFFF");
+                _dialog.DialogTheme = BaseTheme.Light;
+                foreach (Grid g in _videoList.Items)
+                {
+                    Set_Colour(g.Children[0] as VideoItem, "light");
+                }
+            }
+        }
+
+        private void Set_Colour(VideoItem v, string col)
+        {
+            var bc = new BrushConverter();
+            if (col == "dark")
+            {
+                v._card.Background = (Brush)bc.ConvertFrom("#FF44463F");
+                v._titleLabel.Foreground = (Brush)bc.ConvertFrom("#FFFFFFFF");
+                v._resLabel.Foreground = (Brush)bc.ConvertFrom("#FFFFFFFF");
+                v._title.Foreground = (Brush)bc.ConvertFrom("#FFFFFFFF");
+                v._subLabel.Foreground = (Brush)bc.ConvertFrom("#FFFFFFFF");               
+            } else
+            {
+                v._card.Background = (Brush)bc.ConvertFrom("#FFFFFFFF");
+                v._titleLabel.Foreground = (Brush)bc.ConvertFrom("#FF5D5D5D");
+                v._resLabel.Foreground = (Brush)bc.ConvertFrom("#FF5D5D5D");
+                v._title.Foreground = (Brush)bc.ConvertFrom("#FF5D5D5D");
+                v._subLabel.Foreground = (Brush)bc.ConvertFrom("#FF5D5D5D");
+            }
+            
+        }
+
+
+        private void Dark_Check(object sender, RoutedEventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["dark"].Value = "dark";
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+            Colour_Mode();
+        }
+
+        private void Dark_Uncheck(object sender, RoutedEventArgs e)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["dark"].Value = "light";
+            config.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection("appSettings");
+            Colour_Mode();
         }
     }
 }
